@@ -8,32 +8,19 @@ A web interface to the superman tools.
 Starting from a fresh download of the source files,
 a few steps are required before starting the server for the first time.
 
-Easy Guide:
-
-	mkdir superman
-	cd superman
-	git clone https://github.com/Bob620/superman-web
-	git clone https://github.com/all-umass/superman
-	cd superman
-	pip3 install -e .
-	cd ../superman-web
-	pip3 install matplotlib tornado==4.4.2 pyyaml h5py pandas pywt sklearn
-	
-
 ### 1: Install Dependencies
 
-While 2.7 and 3.4+ are supported, I've only tested with 3.4+
-
-Python (3.4+) is the main requirement for running the server.
+Python (2.7 or 3.4+) is the main requirement for running the server.
 Several Python packages are needed, available from PyPI via `pip`:
 
-    pip3 install matplotlib tornado==4.4.2 pyyaml h5py pandas pywt sklearn
-    
-It will complain about `xylib` and `metakit`, but will only disable the ability to parse specific file types.
-Neither of these packages are available on pip3 at the moment.
+    pip install --only-binary :all: superman matplotlib tornado pyyaml h5py pandas
 
-Make sure that you have set up your superman repo and installed it.
-[Superman docs](https://github.com/all-umass/superman#installation)
+If you're not running Linux, `superman` may require special care to install.
+See [the superman docs](https://github.com/all-umass/superman#installation) for instructions.
+
+For running tests, you'll want:
+
+    pip install pytest mock coverage
 
 
 ### 2: Configure
@@ -46,7 +33,7 @@ In the same way, copy `datasets-template.yml` to `datasets.yml`
 and update the listings to match your local datasets.
 
 
-### 3: Add Datasets (Optional)
+### 3: Add Datasets
 
 Datasets are the basic unit of data in the superman server.
 Add one by modifying the `datasets.yml` configuration file,
@@ -67,22 +54,16 @@ with any currently running server.
 
 Or simply run the server directly, and handle the details yourself:
 
-    python3 superman_server.py
+    python superman_server.py
 
 To stop the server without restarting it, use:
 
     ./restart_server.sh --kill
 
-### 5: Testing (Optional)
-
-For running tests, you'll want:
-
-    pip3 install pytest mock coverage
-
 If you want to verify that everything is working as intended,
 try running the test suite (located in the `test/` directory):
 
-    python3 -m pytest
+    python -m pytest
 
 To generate a nice code coverage report:
 
